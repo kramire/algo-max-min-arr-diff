@@ -28,6 +28,22 @@
 
 function maxAndMin (parens) {
   // your code here. Enjoy the music.
+  const [arr1, arr2] = [...arguments];
+
+  if (!Array.isArray(arr1) || !Array.isArray(arr2)) return 'Please enter two arrays.';
+  if (Math.min(...arr1) < 0 || Math.min(...arr2) < 0) return 'Please enter positive integers only.';
+
+  const diffs = [];
+
+  arr1.forEach( function (el) {
+    arr2.forEach( function (el2) {
+      diffs.push(Math.max(el, el2) - Math.min(el, el2));
+    });
+  });
+
+  diffs.sort( (a,b) => b-a);
+  return [diffs[0], diffs[diffs.length-1]];
+
 }
 
 module.exports = maxAndMin;
